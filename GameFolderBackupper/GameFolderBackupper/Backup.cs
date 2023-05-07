@@ -37,6 +37,12 @@ namespace GameFolderBackupper
 
         static string CopyDirectory(string sourceDir, string destinationDir, string customName)
         {
+
+            if (Directory.Exists(Path.Combine(destinationDir, customName)))
+            {
+                Directory.Delete(Path.Combine(destinationDir, customName), true);
+            }
+
             // Get information about the source directory
             var dir = new DirectoryInfo(sourceDir);
 
