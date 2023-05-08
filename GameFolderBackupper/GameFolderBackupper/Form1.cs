@@ -52,8 +52,10 @@ namespace GameFolderBackupper
                         tb_CustomName.Text = item.CustomName;
                         tb_SourcePath.Text = item.SourcePath;
                         tb_TargetPath.Text = item.TargetPath;
+                        MyPath1 = item;
                         lbl_SelectedPath.Text = "Selected Path: " + item.CustomName;
                         btn_SavePath.Text = "Update Path";
+                        break;
                     }
                 }
 
