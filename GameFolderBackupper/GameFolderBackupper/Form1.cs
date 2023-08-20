@@ -1,5 +1,6 @@
 ﻿using AnInterestingWebSiteName.Classes;
 using GameFolderBackupper.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -76,7 +77,20 @@ namespace GameFolderBackupper
                 {
                     MyPath myPath = new MyPath();
                     myPath.CustomName = tb_CustomName.Text;
-                    myPath.SourcePath = tb_SourcePath.Text;
+
+                    if (tb_SourcePath.Text == "documents")
+                    {
+                        myPath.SourcePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    }
+                    else if (tb_SourcePath.Text == "downloads")
+                    {
+                        myPath.SourcePath = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();
+                    }
+                    else
+                    {
+                        myPath.SourcePath = tb_SourcePath.Text;
+                    }
+
                     myPath.TargetPath = tb_TargetPath.Text;
 
                     BaseClass mydb = Statics.db;
@@ -102,7 +116,20 @@ namespace GameFolderBackupper
                 MyPath oldPath = MyPath1;
 
                 MyPath1.CustomName = tb_CustomName.Text;
-                MyPath1.SourcePath = tb_SourcePath.Text;
+                if (tb_SourcePath.Text == "documents")
+                {
+                    MyPath1.SourcePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                }
+                else if (tb_SourcePath.Text == "downloads")
+                {
+                    MyPath1.SourcePath = Registry.GetValue(@"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders", "{374DE290-123F-4565-9164-39C4925E467B}", String.Empty).ToString();
+                }
+                else
+                {
+                    MyPath1.SourcePath = tb_SourcePath.Text;
+                }
+
+                MyPath1.TargetPath = tb_TargetPath.Text;
                 MyPath1.TargetPath = tb_TargetPath.Text;
 
                 BaseClass mydb = Statics.db;
