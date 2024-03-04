@@ -11,6 +11,8 @@ namespace AnInterestingWebSiteName.Classes
 {
     public class SerilisationStuff
     {
+
+
         public BaseClass XMLDeserialiserWS()
         {
             try
@@ -108,5 +110,7 @@ namespace AnInterestingWebSiteName.Classes
                 throw;
             }
         }
+
+
     }
 }

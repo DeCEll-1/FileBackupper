@@ -22,7 +22,7 @@ namespace GameFolderBackupper
         private void Backup_Load(object sender, EventArgs e)
         {
             foreach (var item in Statics.db.Path)
-            {
+            {   
                 string result = CopyDirectory(item.SourcePath, item.TargetPath, item.CustomName);
 
                 btn_CurrentlyUpdating.Text = item.CustomName;
@@ -31,6 +31,7 @@ namespace GameFolderBackupper
                 {
                     MessageBox.Show("Source directory not found: " + item.SourcePath + "    " + result, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             this.Close();
         }
@@ -41,12 +42,12 @@ namespace GameFolderBackupper
             try
             {
 
-
-                if (Directory.Exists(Path.Combine(destinationDir, customName)))
-                {
-                    UpdateFileAttributes(new DirectoryInfo(Path.Combine(destinationDir, customName)));
-                    Directory.Delete(Path.Combine(destinationDir, customName), true);
-                }
+                //slow as balls
+                //if (Directory.Exists(Path.Combine(destinationDir, customName)))
+                //{
+                //    UpdateFileAttributes(new DirectoryInfo(Path.Combine(destinationDir, customName)));
+                //    Directory.Delete(Path.Combine(destinationDir, customName), true);
+                //}
 
                 // Get information about the source directory
                 var dir = new DirectoryInfo(sourceDir);
