@@ -57,7 +57,20 @@ namespace AnInterestingWebSiteName.Classes
                     var stringReader = new StringReader(sr.ReadToEnd());
                     var serializer = new XmlSerializer(typeof(BaseClass));
                     return (BaseClass)serializer.Deserialize(stringReader);
+                }//havent found it
+                else
+                {
+                    string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    string dataFilePath = Path.Combine(documentsPath, "BackupFileSaver", "Paths.txt");
+                    BaseClass baseClass = new BaseClass();
+                    using (FileStream fileStream = new FileStream(dataFilePath, FileMode.Append))
+                    {
+                        XmlSerializer serializer = new XmlSerializer(typeof(BaseClass));
+                        serializer.Serialize(fileStream, baseClass);
+                    }
+                    return baseClass;
                 }
+
                 return null;
             }
             catch (Exception)

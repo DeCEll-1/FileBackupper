@@ -118,6 +118,7 @@ namespace GameFolderBackupper
 
         private static void UpdateFileAttributes(DirectoryInfo dInfo)
         {
+            return;//slow as balls
             //https://stackoverflow.com/questions/17273650/setting-file-attributes-recursively-subfolders
             // Set Directory attribute
             dInfo.Attributes &= ~FileAttributes.ReadOnly;

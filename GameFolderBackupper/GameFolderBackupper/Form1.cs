@@ -33,9 +33,11 @@ namespace GameFolderBackupper
         {
             lb_paths.Items.Clear();
 
-            foreach (var item in Statics.db.Path)
+            if (Statics.db?.Path == null) return;
+
+            foreach (var item in Statics.db?.Path)
             {
-                lb_paths.Items.Add(item.CustomName);
+                lb_paths.Items.Add(item?.CustomName);
             }
         }
 
